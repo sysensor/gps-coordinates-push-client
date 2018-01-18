@@ -5,14 +5,14 @@ import {LoginComponent} from "./login/login.component";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import { HomeComponent } from './home/home.component';
+import { MapComponent } from './map/map.component';
 import {CommonModule} from "@angular/common";
 import {AgmCoreModule} from "@agm/core";
 
 
 @NgModule({
   declarations: [
-    AppComponent, LoginComponent, HomeComponent
+    AppComponent, LoginComponent, MapComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +20,7 @@ import {AgmCoreModule} from "@agm/core";
     CommonModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', component: MapComponent },
       { path: 'login', component: LoginComponent }]),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB4w0Jd1rAVU3XjQSGPGRPA2vYvwX9KL1E'
