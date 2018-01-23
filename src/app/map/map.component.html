@@ -6,12 +6,14 @@
     [latitude]="m.lat"
     [longitude]="m.lng"
     [label]="m.label"
-    [iconUrl]="'/assets/images/map/bicycle-store.svg'"
     [markerDraggable]="m.draggable">
+    <!--[iconUrl]="'/assets/images/map/icon-blue5.svg'" -->
 
     <agm-info-window>
-      <strong>InfoWindow content</strong>
+      <strong>Selected Location</strong>
     </agm-info-window>
 
   </agm-marker>
 </agm-map>
+<br/>
+<button type="button" class="btn btn-success" (click)="pushGPSC()">Push GPS Coordinates</button>

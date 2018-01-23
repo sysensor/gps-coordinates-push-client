@@ -9,7 +9,7 @@ import {TokenService} from "../service/token-service";
 })
 export class LoginComponent {
 
-  public loginData = {username: "", password: ""};
+  public loginData = {username: "", password: "", accessToken:""};
 
   constructor(private _service: TokenService) {
   }
