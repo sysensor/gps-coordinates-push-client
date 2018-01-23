@@ -2,7 +2,7 @@
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   <agm-marker
     *ngFor="let m of markers; let i = index"
-    (markerClick)="clickedMarker(m.label, i)"
+    (markerClick)="removeMarker(m.label, i)"
     [latitude]="m.lat"
     [longitude]="m.lng"
     [label]="m.label"
@@ -17,3 +17,4 @@
 </agm-map>
 <br/>
 <button type="button" class="btn btn-success" (click)="pushGPSC()">Push GPS Coordinates</button>
+<button type="button" class="btn btn-success" (click)="getGPSC()">Get GPS Coordinates</button>

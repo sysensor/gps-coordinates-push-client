@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {MouseEvent} from "@agm/core";
 import {TokenService} from "../service/token-service";
 
@@ -9,8 +9,8 @@ import {TokenService} from "../service/token-service";
   styleUrls: ['map.component.css']
 })
 export class MapComponent implements OnInit {
-  lat: number = 41.619549;
-  lng: number = -93.598022;
+  lat: number = 41.573946;
+  lng: number = -93.616708;
 
   constructor(private _service: TokenService) {
   }
@@ -26,13 +26,26 @@ export class MapComponent implements OnInit {
     });
   }
 
-  pushGPSC(){
-    this.markers.forEach((marker)=>{
+  removeMarker(index){
+    this.markers.splice(index,1);
+  }
+
+  pushGPSC() {
+    this.markers.forEach((marker) => {
       console.log(marker);
       this._service.pushGPSCoordinatesToBackEnd(marker);
     })
 
     this.markers = [];
+  }
+
+  getGPSC() {
+    let res = this._service.getGPSCoordinatesFromBackEnd();
+    this.markers.push({
+      lat: res.lat,
+      lng: res.lng,
+      draggable: true
+    });
   }
 
   markers: marker[] = [];
