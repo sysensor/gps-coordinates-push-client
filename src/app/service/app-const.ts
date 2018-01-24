@@ -9,4 +9,6 @@ export class AppConst {
   public static TOKEN_EXPIRE = 'TOKEN_EXPIRE';
   public static APP_ERROR = 'APP_ERROR';
 
+  public static WSO2_APP_CLIENT_SECRET = 'RnhGWVRBOGR5cGNmenBVYmtwc3dmTm1xZUo4YTpDcmhJTmhlOENwVDlQY2Y4d2pVbkhRVmdGQVFh';
+
 }

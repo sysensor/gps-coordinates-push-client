@@ -5,15 +5,15 @@ import {AppConst} from "./app-const";
 
 @Injectable()
 export class AppAuthInterceptor implements HttpInterceptor {
-  intercept (req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq;
-    if(req.url.match(AppConst.WSO2_TOKEN_API)){
+    if (req.url.match(AppConst.WSO2_TOKEN_API)) {
       authReq = req.clone({
-        headers: req.headers.set('Authorization', 'Basic RnhGWVRBOGR5cGNmenBVYmtwc3dmTm1xZUo4YTpDcmhJTmhlOENwVDlQY2Y4d2pVbkhRVmdGQVFh')
+        headers: req.headers.set('Authorization', 'Basic ' + AppConst.WSO2_APP_CLIENT_SECRET)
           .set('Content-Type', 'application/x-www-form-urlencoded')
       });
-    }else {
-       authReq = req.clone({
+    } else {
+      authReq = req.clone({
         headers: req.headers.set('Authorization', 'Bearer ' + localStorage.getItem(AppConst.ACCESS_TOKEN).toString())
           .set('Content-Type', 'application/json').set('Accept', 'application/json')
       });

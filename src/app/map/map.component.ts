@@ -89,6 +89,11 @@ export class MapComponent implements OnInit {
     this.reloadData();
   }
 
+  refresh(){
+    this.reloadData();
+    this.markers = [];
+  }
+
   markers: marker[] = [];
 
 }
