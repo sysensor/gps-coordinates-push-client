@@ -11,7 +11,6 @@ export class TokenService {
   }
 
   validateUserLogin(loginData) {
-    //console.log("We are here..." + loginData.username + loginData.password);
     const req = this._http.post<Token>(AppConst.WSO2_TOKEN_API + '?grant_type=password&username=' + loginData.username + '&password=' + loginData.password + '&scope=SCOPE_GPS_PUBLISHER SCOPE_GPS_RECEIVER', null)
       .subscribe(
         res => {
@@ -20,7 +19,7 @@ export class TokenService {
           this._router.navigate(['/']);
         },
         err => {
-          console.log("Error occured");
+          console.log("Error occured in Login");
           localStorage.setItem(AppConst.ACCESS_TOKEN, '');
         }
       );
@@ -39,37 +38,26 @@ export class TokenService {
           console.log(res);
         },
         err => {
-          console.log("Error occured");
+          console.log("Error occured in GPS push");
         }
       );
   }
 
   getGPSCoordinatesFromBackEnd() {
-    let result ={lat:41.6195, lng:-93.598};
-    this._http.get<GPSCoordinates>(AppConst.WSO2_APIM_BASE + '/gps/api/signal')
-      .subscribe(
-        data => {
-          console.log(data);
-          result = data;
-        },
-        err => {
-          console.log("Error occured");
-        }
-      );
-    return result;
+    return this._http.get<GPSCoordinates>(AppConst.WSO2_APIM_BASE + '/gps/api/signal');
   }
 
 }
 
 interface GPSCoordinates {
-  lat: number;
-  lng: number;
+  lat: string;
+  lng: string;
 }
 
-interface Token{
-  access_token:string;
-  refresh_token:string;
-  scope:string;
-  token_type:string;
-  expires_in:number;
+interface Token {
+  access_token: string;
+  refresh_token: string;
+  scope: string;
+  token_type: string;
+  expires_in: number;
 }

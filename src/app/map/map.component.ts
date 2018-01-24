@@ -9,8 +9,8 @@ import {TokenService} from "../service/token-service";
   styleUrls: ['map.component.css']
 })
 export class MapComponent implements OnInit {
-  lat: number = 41.573946;
-  lng: number = -93.616708;
+  lat: number = 41.5739;
+  lng: number = -93.6867;
 
   constructor(private _service: TokenService) {
   }
@@ -26,8 +26,8 @@ export class MapComponent implements OnInit {
     });
   }
 
-  removeMarker(index){
-    this.markers.splice(index,1);
+  removeMarker(index) {
+    this.markers.splice(index, 1);
   }
 
   pushGPSC() {
@@ -41,11 +41,23 @@ export class MapComponent implements OnInit {
 
   getGPSC() {
     let res = this._service.getGPSCoordinatesFromBackEnd();
-    this.markers.push({
-      lat: res.lat,
-      lng: res.lng,
-      draggable: true
-    });
+    if (res != null) {
+      res.subscribe(
+        data => {
+          console.log(data);
+          this.markers.push({
+            lat: parseFloat(data.lat),
+            lng: parseFloat(data.lng),
+            draggable: true
+          });
+
+        },
+        err => {
+          console.log("Error occured on get GPS Coordinates");
+        }
+      );
+
+    }
   }
 
   markers: marker[] = [];

@@ -1,5 +1,4 @@
 <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   <agm-marker
     *ngFor="let m of markers; let i = index"
     (markerClick)="removeMarker(m.label, i)"
