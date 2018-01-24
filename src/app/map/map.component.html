@@ -15,5 +15,14 @@
   </agm-marker>
 </agm-map>
 <br/>
-<button type="button" class="btn btn-success" (click)="pushGPSC()">Push GPS Coordinates</button>
 <button type="button" class="btn btn-success" (click)="getGPSC()">Get GPS Coordinates</button>
+<button type="button" class="btn btn-primary" (click)="pushGPSC()">Push GPS Coordinates</button>
+<button type="button" class="btn btn-warning" (click)="reloadData()">Refresh</button>
+<button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+<br/><br/>
+<span class="badge badge-danger">ACCESS_TOKEN</span><label class="form-control">{{access_token}}</label>
+<span class="badge badge-danger">TOKEN_TYPE, TOKEN_EXPIRE</span><label class="form-control">{{token_type}} {{token_expire}}</label>
+<span class="badge badge-danger">TOKEN_SCOPE</span><label class="form-control">{{token_scope}}</label>
+<span class="badge badge-danger">REFRESH_TOKEN</span><label class="form-control">{{refresh_token}}</label>
+<span class="badge badge-danger">APP_ERRORS</span><label class="form-control">{{app_error}}</label>
+

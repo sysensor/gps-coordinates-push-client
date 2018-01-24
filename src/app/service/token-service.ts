@@ -16,11 +16,21 @@ export class TokenService {
         res => {
           console.log(res);
           localStorage.setItem(AppConst.ACCESS_TOKEN, res.access_token);
+          localStorage.setItem(AppConst.REFRESH_TOKEN, res.refresh_token);
+          localStorage.setItem(AppConst.TOKEN_SCOPE, res.scope);
+          localStorage.setItem(AppConst.TOKEN_TYPE, res.token_type);
+          localStorage.setItem(AppConst.TOKEN_EXPIRE, res.expires_in.toString());
+          localStorage.setItem(AppConst.APP_ERROR,'');
           this._router.navigate(['/']);
         },
         err => {
-          console.log("Error occured in Login");
+          console.log("Wrong username and password combination");
           localStorage.setItem(AppConst.ACCESS_TOKEN, '');
+          localStorage.setItem(AppConst.TOKEN_TYPE, '');
+          localStorage.setItem(AppConst.TOKEN_EXPIRE, '');
+          localStorage.setItem(AppConst.TOKEN_SCOPE, '');
+          localStorage.setItem(AppConst.REFRESH_TOKEN, '');
+          localStorage.setItem(AppConst.APP_ERROR,"Wrong username and password combination");
         }
       );
 
@@ -36,9 +46,11 @@ export class TokenService {
       .subscribe(
         res => {
           console.log(res);
+          localStorage.setItem(AppConst.APP_ERROR,'');
         },
         err => {
           console.log("Error occured in GPS push");
+          localStorage.setItem(AppConst.APP_ERROR,"ERROR POST:"+err.message);
         }
       );
   }
